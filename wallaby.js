@@ -8,11 +8,11 @@ module.exports = function () {
 
     tests: ['test/unit/**/*.test.js'],
 
-    bootstrap: function (wallaby) {
+    setup: function (wallaby) {
 
       wallaby.delayStart();
 
-      var setup = function () {
+      var setupSails = function () {
 
         var freeport = require('freeport');
         var path = require('path');
@@ -91,10 +91,10 @@ module.exports = function () {
       // if it doesn't work for you, use workers: {recycle: true}
       // http://wallabyjs.com/docs/config/workers.html
       if (global.sails) {
-        global.sails.lower(setup);
+        global.sails.lower(setupSails);
       }
       else {
-        setup();
+        setupSails();
       }
     },
     env: {
